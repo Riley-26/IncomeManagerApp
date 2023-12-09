@@ -1,10 +1,8 @@
 const mainModal = document.getElementsByClassName("modal")[0];
 const incomeForm = document.getElementsByClassName("income-form")[0];
 const expenseForm = document.getElementsByClassName("expense-form")[0];
-document.getElementById("main").onload = () => loadElements();
 
-function loadElements(){
-    console.log("hello")
+if (window.location.pathname == '/userpage/'){
     const userTotal = document.getElementsByClassName("main-totals-usertotal")[0];
 
     if (userTotal.innerHTML[0] == "+"){

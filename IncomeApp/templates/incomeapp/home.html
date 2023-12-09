@@ -2,10 +2,33 @@
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
 
+
 {% block content %}
 
 <div class="container home-container">
-    <h1 class="home-header">Home</h1>
+    <div class="upper-main">
+        <h1 class="upper-home-header">A simple, interactive way to manage your monthly incomes and expenses.</h1>
+        <p class="upper-home-info">
+            Contain and track all of your in and outgoings in one application.
+        </p>
+        <div class="upper-home-figures">
+            <h2 class="upper-home-total">+£830</h2>
+            <div class="upper-home-nums">
+                <h2 class="upper-home-green">+£2450</h2>
+                <h2 class="upper-home-red">-£1620</h2>
+            </div>
+        </div>
+    </div>
+    <hr class="main-hr">
+    <div class="lower-main">
+        <h1 class="lower-home-header">Why use THIS application?</h1>
+        <ul class="lower-home-list">
+            <li class="lower-home-info"><span class="material-symbols-outlined">update</span>Dynamically updating figures in a clear format</li>
+            <li class="lower-home-info"><span class="material-symbols-outlined">encrypted</span>Personal user account, with easy and secure authentication</li>
+            <li class="lower-home-info"><span class="material-symbols-outlined">visibility_off</span>A way to show and hide your information quickly</li>
+        </ul>
+    </div>
+
 </div>
 
 {% endblock content %}

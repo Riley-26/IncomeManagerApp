@@ -33,7 +33,9 @@ a:hover{
 hr{
     border-bottom: 1px solid rgb(255, 255, 255);
     opacity: 80%;
+    width: 100%;
     margin: 0;
+    box-shadow: 0 25px 40px 20px rgba(0, 0, 0, 0.4);
 }
 
 ul{
@@ -47,6 +49,14 @@ li{
 .navbar{
     padding-left: 72px;
     padding-right: 72px;
+    position: sticky;
+    top: 0;
+}
+
+.nav-hr{
+    position: absolute;
+    left: 0;
+    bottom: 0;
 }
 
 .nav-container{
@@ -395,10 +405,101 @@ li{
 /* Home */
 
 .home-container{
-    background-color: black;
+    max-width: 100%;
+    padding: 0;
 }
 
-.home-header{
+.upper-home-header{
     font-size: 56px;
+    color: var(--light-font-color);
+}
+
+.upper-home-info{
+    padding: 24px;
+    font-size: 30px;
+    color: rgb(13, 13, 13);
+    font-weight: 500;
+    text-align: center;
+}
+
+.upper-main{
+    background: radial-gradient(at 18% 99%, rgb(66, 119, 129) 0px, transparent 50%) repeat scroll 0% 0%, 
+                radial-gradient(at 4% 49%, rgb(62, 62, 62) 0px, transparent 50%) repeat scroll 0% 0%,
+                rgba(0, 0, 0, 0) radial-gradient(at 57% 33%, #427781 0px, rgb(62, 62, 62) 50%) repeat scroll 0% 0%;
+    height: 70%;
+    padding: 72px 128px;
+}
+
+.upper-home-nums{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 128px;
+}
+
+.upper-home-figures{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.upper-home-total{
+    font-size: 80px;
+    margin: 0 128px;
+    color: green;
+    font-weight: 400;
+}
+
+.upper-home-green{
+    padding: 24px;
+    color: green;
+    font-size: 44px;
+    font-weight: 400;
+}
+
+.upper-home-red{
+    padding: 24px;
+    color: red;
+    font-size: 44px;
+    font-weight: 400;
+}
+
+.lower-main{
+    height: 80%;
+    width: 100%;
+    padding: 8% 20%;
     
+}
+
+.lower-home-header{
+    color: var(--light-font-color);
+    font-size: 48px;
+}
+
+.lower-home-list{
+    margin: 24px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.lower-home-info{
+    font-size: 26px;
+    color: rgb(13, 13, 13);
+    font-weight: 500;
+    margin: 24px 0;
+    height: 100%;
+}
+
+
+.material-symbols-outlined{
+    font-size: 36px;
+    font-weight: 600;
+    padding: 16px 24px;
+    color: var(--main-color);
+}
+
+.main-hr{
+    box-shadow: 0 25px 40px 20px rgba(0, 0, 0, 0.4);
 }
