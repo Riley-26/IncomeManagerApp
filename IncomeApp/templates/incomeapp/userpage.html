@@ -18,34 +18,28 @@
                 <input type="button" value="Submit" onclick="addNewIncome()">
             </form>
             <div class="main-left-lists">
-                <ul class="main-left-list-nums">
-                    {% for income in incomes %}
-                        <li class="main-left-list-element-num" style="color:green;">+ £{{income.amount}}</li>
-                    {% endfor %}
-                </ul>
-                <ul class="main-left-list-titles">
-                    {% for income in incomes %}
+                {% for income in incomes %}
+                <div class="main-left-list">
+                    <li class="main-left-list-element-num" style="color:green;">+£{{income.amount}}</li>
+                    <ul class="main-left-list-item">
                         <li class="main-left-list-element-title">{{income.name}}</li>
-                    {% endfor %}
-                </ul>
-                <ul class="main-left-list-deletes">
-                    {% for income in incomes %}
-                        <li class="main-left-list-delete"><img src={% static "images/delete_FILL0_wght400_GRAD0_opsz24.png"%} onclick="deleteIncome({{ forloop.counter0 }})"></img></li>
-                    {% endfor %}
+                        <li class="main-left-list-delete"><span class="material-symbols-outlined bin-icon"onclick="deleteIncome({{ forloop.counter0 }})">delete</span></li>
+                    </ul>
+                </div>
+                {% endfor %}
                 </ul>
             </div>
         </div>
         <div class="main-mid">
             <div class="main-totals">
                 <h1 class="main-totals-header">Welcome, {{user.name}}</h1>
-                <h2 class="main-totals-subheader">Totals:</h2>
+                <h2 class="main-totals-subheader">Monthly total:</h2>
                 <div class="main-totals-info-wrapper">
                     <span class="main-totals-usertotal" style="color:green;">{{final_total}}</span>
                     <div class="main-totals-right-info">
                         <p class="main-totals-info">
                             On good footing!
                         </p>
-                        <h3 class="hide-button" onclick="blurModal('hide')">HIDE PAGE</h3>
                     </div>
                 </div>
             </div>
@@ -72,24 +66,20 @@
                 <input type="button" value="Submit" onclick="addNewExpense()">
             </form>
             <div class="main-right-lists">
-                <ul class="main-right-list-nums">
-                    {% for expense in expenses %}
-                        <li class="main-right-list-element-num" style="color:red;">- £{{expense.amount}}</li>
-                    {% endfor %}
-                </ul>
-                <ul class="main-right-list-titles">
-                    {% for expense in expenses %}
+                {% for expense in expenses %}
+                <div class="main-right-list">
+                    <li class="main-right-list-element-num" style="color:red;">+£{{expense.amount}}</li>
+                    <ul class="main-right-list-item">
                         <li class="main-right-list-element-title">{{expense.name}}</li>
-                    {% endfor %}
-                </ul>
-                <ul class="main-right-list-deletes">
-                    {% for expense in expenses %}
-                        <li class="main-right-list-delete"><img src={% static "images/delete_FILL0_wght400_GRAD0_opsz24.png"%} onclick="deleteExpense({{ forloop.counter0 }})"></img></li>
-                    {% endfor %}
+                        <li class="main-right-list-delete"><span class="material-symbols-outlined bin-icon"onclick="deleteExpense({{ forloop.counter0 }})">delete</span></li>
+                    </ul>
+                </div>
+                {% endfor %}
                 </ul>
             </div>
         </div>
     </div>
+    <span class="hide-button" onclick="visIcon()"><span class="material-symbols-outlined hide-icon">visibility_off</span></span>
 </div>
 
 {% endblock content %}

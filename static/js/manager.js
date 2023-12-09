@@ -1,6 +1,7 @@
 const mainModal = document.getElementsByClassName("modal")[0];
 const incomeForm = document.getElementsByClassName("income-form")[0];
 const expenseForm = document.getElementsByClassName("expense-form")[0];
+const visBtn = document.getElementsByClassName("hide-icon")[0];
 
 if (window.location.pathname == '/userpage/'){
     const userTotal = document.getElementsByClassName("main-totals-usertotal")[0];
@@ -22,6 +23,25 @@ if (window.location.pathname == '/userpage/'){
     } else{
         mainModal.style.opacity = sessionStorage.getItem("opacity")
     }
+
+    if (!sessionStorage.getItem("vis")){
+        sessionStorage.setItem("vis", "visibility")
+    } else{
+        visBtn.innerHTML = sessionStorage.getItem("vis")
+    }
+}
+
+function visIcon(){
+    if (visBtn.innerHTML === "visibility"){
+        visBtn.innerHTML = "visibility_off"
+        sessionStorage.setItem("vis", "visibility_off")
+        blurModal("show")
+    } else if (visBtn.innerHTML === "visibility_off"){
+        visBtn.innerHTML = "visibility"
+        sessionStorage.setItem("vis", "visibility")
+        blurModal("hide")
+    }
+    
 }
 
 function blurModal(value){
@@ -30,11 +50,15 @@ function blurModal(value){
         mainModal.style.opacity = sessionStorage.getItem("opacity");
         sessionStorage.setItem("display", "none");
         setTimeout(() => {mainModal.style.display = sessionStorage.getItem("display")}, 200);
+        sessionStorage.setItem("vis", "visibility_off")
+        visBtn.innerHTML = sessionStorage.getItem("vis")
     } else if (value === "hide"){
         sessionStorage.setItem("display", "block");
         mainModal.style.display = sessionStorage.getItem("display");
         sessionStorage.setItem("opacity", "1");
         setTimeout(() => {mainModal.style.opacity = sessionStorage.getItem("opacity")}, 200);
+        sessionStorage.setItem("vis", "visibility")
+        visBtn.innerHTML = sessionStorage.getItem("vis")
     }
 }
 
