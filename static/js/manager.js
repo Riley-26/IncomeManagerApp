@@ -2,6 +2,7 @@ const mainModal = document.getElementsByClassName("modal")[0];
 const incomeForm = document.getElementsByClassName("income-form")[0];
 const expenseForm = document.getElementsByClassName("expense-form")[0];
 const visBtn = document.getElementsByClassName("hide-icon")[0];
+const formModal = document.getElementsByClassName("form-modal")[0];
 
 if (window.location.pathname == '/userpage/'){
     const userTotal = document.getElementsByClassName("main-totals-usertotal")[0];
@@ -118,6 +119,14 @@ function addNewExpense(){
     var url = '/add_expense/';
     expenseAmount = document.getElementsByClassName('expense-amount')[0].value
     expenseName = document.getElementsByClassName('expense-name')[0].value
+
+    x = document.getElementsByClassName('main-right-list-element-title')
+
+    for (i = 0; i < x.length; i++){
+        if (incomeName === document.getElementsByClassName('main-right-list-element-title')[i].innerHTML){
+            alert("Name already exists. Please choose another.")
+        }
+    }
     
     fetch(url, {
         method:'POST',
@@ -159,6 +168,8 @@ function incomeBtn(i){
     if (i == 0){
         incomeForm.style.display = "flex";
         setTimeout(() => {incomeForm.style.opacity = "1"}, 200);
+        formModal.style.display = "block";
+        setTimeout(() => {formModal.style.opacity = "1"}, 200);
     };
 }
 
@@ -167,5 +178,32 @@ function expenseBtn(i){
     if (i == 0){
         expenseForm.style.display = "flex";
         setTimeout(() => {expenseForm.style.opacity = "1"}, 200);
+        formModal.style.display = "block";
+        setTimeout(() => {formModal.style.opacity = "1"}, 200);
     };
+}
+
+function closeBtn(){
+    location.reload()
+}
+
+function loginUser(){
+    var url = "/login_user/"
+    username = document.getElementsByClassName('username-input')[0].value
+    email = document.getElementsByClassName('email-input')[0].value
+    password = document.getElementsByClassName('password-input')[0].value
+
+    fetch(url, {
+        method: 'POST',
+        headers:{
+            'Content-Type':'application/json',
+            'X-CSRFToken':csrftoken,
+        },
+        body:JSON.stringify({'username': username, 'email': email, 'password': password})
+    })
+
+    .then((response) =>{
+        location.reload()
+        return response.json();
+    })
 }

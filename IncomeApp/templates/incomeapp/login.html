@@ -1,0 +1,22 @@
+{% extends "incomeapp/main.html" %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+
+{% block content %}
+<div class="container login-container">
+    <form class="login-form">
+        <h1 class="login-header">Log-in/Create User</h1>
+        <label class="login-label username-label">Username</label>
+        <input type="text" class="login-input username-input" name="username-input">
+        <label class="login-label email-label">Email</label>
+        <input type="text" class="login-input email-input" name="email-input">
+        <label class="login-label password-label">Password</label>
+        <input type="text" class="login-input password-input" name="password-input">
+        <div class="login-buttons">
+            <input type="button" class="login-button" name="login-button" value="Log-in" onclick="loginUser()">
+            <input type="button" class="login-button" name="login-button" value="Create New User" onclick="loginUser()">
+        </div>
+    </form>
+</div>
+
+{% endblock content %}

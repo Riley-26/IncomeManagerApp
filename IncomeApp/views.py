@@ -10,9 +10,21 @@ def home(request):
     context = {}
     return render(request, 'incomeapp/home.html', context)
 
-def signin(request):
+def login(request):
     context = {}
-    return render(request, 'incomeapp/signin.html', context)
+    return render(request, 'incomeapp/login.html', context)
+
+def loginUser(request):
+    data = userData(request)
+    username = data['username']
+    email = data['email']
+    
+    person = request.user.person
+    new_user = Person.objects.get_or_create(user=person, name=username, email=email)
+    
+    new_user.save()
+    
+    return JsonResponse("yes", safe=False)
 
 def userpage(request):
     data = userData(request)

@@ -4,12 +4,14 @@
 
 {% block content %}
 <div class="container">
+    <span class="form-modal"></span>
     <div id="main">
         <div class="modal"><span class="view-button" onclick="blurModal('show')">View</span></div>
         <div class="main-left">
             <h2 class="main-left-header">Incomes</h1>
             <button class="main-left-incomes-btn" onclick="incomeBtn('0')">ADD INCOME</button>
             <form class="income-form">
+                <span class="material-symbols-outlined close-btn" onclick="closeBtn()">close</span>
                 <label>Amount: </label>
                 <input type="text" class="income-amount" name="income-amount">
                 <br>
@@ -36,11 +38,6 @@
                 <h2 class="main-totals-subheader">Monthly total:</h2>
                 <div class="main-totals-info-wrapper">
                     <span class="main-totals-usertotal" style="color:green;">{{final_total}}</span>
-                    <div class="main-totals-right-info">
-                        <p class="main-totals-info">
-                            On good footing!
-                        </p>
-                    </div>
                 </div>
             </div>
             <div class="main-extra-totals">
@@ -58,6 +55,7 @@
             <h2 class="main-right-header">Expenses</h1>
             <button class="main-right-expenses-btn" onclick="expenseBtn('0')">ADD EXPENSE</button>
             <form class="expense-form">
+                <span class="material-symbols-outlined close-btn" onclick="closeBtn()">close</span>
                 <label>Amount: </label>
                 <input type="text" class="expense-amount" name="expense-amount">
                 <br>
