@@ -88,6 +88,7 @@ function blurModal(value){
 
 function addNewIncome(){
     var url = '/add_income/';
+    var exists = false
     incomeAmount = document.getElementsByClassName('income-amount')[0].value
     incomeName = document.getElementsByClassName('income-name')[0].value
 
@@ -96,22 +97,25 @@ function addNewIncome(){
     for (i = 0; i < x.length; i++){
         if (incomeName === document.getElementsByClassName('main-left-list-element-title')[i].innerHTML){
             alert("Name already exists. Please choose another.")
+            exists = true
         }
     }
 
-    fetch(url, {
-        method:'POST',
-        headers:{
-            'Content-Type':'application/json',
-            'X-CSRFToken': csrftoken,
-        },
-        body:JSON.stringify({'income_amount': incomeAmount, 'income_name': incomeName})
-    })
+    if (exists === false){
+        fetch(url, {
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json',
+                'X-CSRFToken': csrftoken,
+            },
+            body:JSON.stringify({'income_amount': incomeAmount, 'income_name': incomeName})
+        })
 
-    .then((response) =>{
-        location.reload()
-        return response.json();
-    })
+        .then((response) =>{
+            location.reload()
+            return response.json();
+        })
+    }
 }
 
 function deleteIncome(i){
@@ -139,6 +143,7 @@ function deleteIncome(i){
 
 function addNewExpense(){
     var url = '/add_expense/';
+    var exists = false
     expenseAmount = document.getElementsByClassName('expense-amount')[0].value
     expenseName = document.getElementsByClassName('expense-name')[0].value
 
@@ -147,22 +152,25 @@ function addNewExpense(){
     for (i = 0; i < x.length; i++){
         if (expenseName === document.getElementsByClassName('main-right-list-element-title')[i].innerHTML){
             alert("Name already exists. Please choose another.")
+            exists = true
         }
     }
     
-    fetch(url, {
-        method:'POST',
-        headers:{
-            'Content-Type':'application/json',
-            'X-CSRFToken': csrftoken,
-        },
-        body:JSON.stringify({'expense_amount': expenseAmount, 'expense_name': expenseName})
-    })
-    
-    .then((response) =>{
-        location.reload()
-        return response.json();
-    })
+    if (exists === false){
+        fetch(url, {
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json',
+                'X-CSRFToken': csrftoken,
+            },
+            body:JSON.stringify({'expense_amount': expenseAmount, 'expense_name': expenseName})
+        })
+        
+        .then((response) =>{
+            location.reload()
+            return response.json();
+        })
+    }
 }
 
 function deleteExpense(i){
@@ -240,8 +248,7 @@ function logout(){
                 headers: {
                     'ContentType': 'application/json',
                     'X-CSRFToken': csrftoken,
-                },
-                body:user
+                }
             })
 
             .then((response) => {

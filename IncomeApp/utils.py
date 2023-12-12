@@ -23,4 +23,11 @@ def getTotals(request):
     expenses_total = Expense.objects.filter(person=person).values_list('amount', flat=True)
     total_expenses = sum([total for total in expenses_total])
     
-    return {'total_incomes': total_incomes, 'total_expenses': total_expenses}
+    final_total = total_incomes - total_expenses
+        
+    if final_total >= 0:
+        final_total = "+£" + str(final_total)
+    else:
+        final_total = "-£" + str(abs(final_total))
+    
+    return {'total_incomes': total_incomes, 'total_expenses': total_expenses, 'final_total': final_total}
