@@ -7,11 +7,12 @@ def userData(request):
     if request.user.is_authenticated:
         person = request.user.person
         person_incomes = Income.objects.filter(person=person).values()
-    
-        person = request.user.person
         person_expenses = Expense.objects.filter(person=person).values()
+    else:
+        return {}
     
     return {'incomes': person_incomes, 'expenses': person_expenses, 'user': person}
+
 
 def getTotals(request):
     person = request.user.person

@@ -4,17 +4,16 @@
 
 {% block content %}
 <div class="container login-container">
-    <form class="login-form">
+    <form class="login-form" action="" method=POST>
+        {% csrf_token %}
         <h1 class="login-header">Log-in/Create User</h1>
         <label class="login-label username-label">Username</label>
         <input type="text" class="login-input username-input" name="username-input">
-        <label class="login-label email-label">Email</label>
-        <input type="text" class="login-input email-input" name="email-input">
         <label class="login-label password-label">Password</label>
-        <input type="text" class="login-input password-input" name="password-input">
+        <input type="password" class="login-input password-input" name="password-input">
         <div class="login-buttons">
-            <input type="button" class="login-button" name="login-button" value="Log-in" onclick="loginUser()">
-            <input type="button" class="login-button" name="login-button" value="Create New User" onclick="loginUser()">
+            <input type="submit" class="login-button" name="login-button" value="Log-in">
+            <input type="submit" class="login-button" name="login-button" value="Create New User">
         </div>
     </form>
 </div>

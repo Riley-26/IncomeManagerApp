@@ -3,32 +3,54 @@ const incomeForm = document.getElementsByClassName("income-form")[0];
 const expenseForm = document.getElementsByClassName("expense-form")[0];
 const visBtn = document.getElementsByClassName("hide-icon")[0];
 const formModal = document.getElementsByClassName("form-modal")[0];
+const guestModal = document.getElementsByClassName("anon-modal")[0];
+const loginBtn = document.getElementsByClassName("login-btn");
+
+if (user !== "AnonymousUser"){
+    for (i = 0; i < loginBtn.length; i++){
+        loginBtn[i].innerHTML = "Log out"
+    }
+    for (i = 0; i < loginBtn.length; i++){
+        loginBtn[i].href = "#"
+    }
+    
+}
 
 if (window.location.pathname == '/userpage/'){
-    const userTotal = document.getElementsByClassName("main-totals-usertotal")[0];
-
-    if (userTotal.innerHTML[0] == "+"){
-        userTotal.style.color = "green";
+    if (user === "AnonymousUser"){
+        guestModal.style.display = "flex"
+        
     } else{
-        userTotal.style.color = "red";
-    };
+        guestModal.style.display = "none"
+        const viewBtn = document.getElementsByClassName("view-button")[0];
 
-    if (!sessionStorage.getItem("display")){
-        sessionStorage.setItem("display", "block")
-    } else{
-        mainModal.style.display = sessionStorage.getItem("display")
-    }
+        viewBtn.style.filter = "brightness(1)"
 
-    if (!sessionStorage.getItem("opacity")){
-        sessionStorage.setItem("opacity", "1")
-    } else{
-        mainModal.style.opacity = sessionStorage.getItem("opacity")
-    }
-
-    if (!sessionStorage.getItem("vis")){
-        sessionStorage.setItem("vis", "visibility")
-    } else{
-        visBtn.innerHTML = sessionStorage.getItem("vis")
+        const userTotal = document.getElementsByClassName("main-totals-usertotal")[0];
+    
+        if (userTotal.innerHTML[0] == "+"){
+            userTotal.style.color = "green";
+        } else{
+            userTotal.style.color = "red";
+        };
+    
+        if (!sessionStorage.getItem("display")){
+            sessionStorage.setItem("display", "block")
+        } else{
+            mainModal.style.display = sessionStorage.getItem("display")
+        }
+    
+        if (!sessionStorage.getItem("opacity")){
+            sessionStorage.setItem("opacity", "1")
+        } else{
+            mainModal.style.opacity = sessionStorage.getItem("opacity")
+        }
+    
+        if (!sessionStorage.getItem("vis")){
+            sessionStorage.setItem("vis", "visibility")
+        } else{
+            visBtn.innerHTML = sessionStorage.getItem("vis")
+        }
     }
 }
 
@@ -123,7 +145,7 @@ function addNewExpense(){
     x = document.getElementsByClassName('main-right-list-element-title')
 
     for (i = 0; i < x.length; i++){
-        if (incomeName === document.getElementsByClassName('main-right-list-element-title')[i].innerHTML){
+        if (expenseName === document.getElementsByClassName('main-right-list-element-title')[i].innerHTML){
             alert("Name already exists. Please choose another.")
         }
     }
@@ -188,10 +210,9 @@ function closeBtn(){
 }
 
 function loginUser(){
-    var url = "/login_user/"
-    username = document.getElementsByClassName('username-input')[0].value
-    email = document.getElementsByClassName('email-input')[0].value
-    password = document.getElementsByClassName('password-input')[0].value
+    var url = ''
+    username_input = document.getElementsByClassName('username-input')[0].value
+    password_input = document.getElementsByClassName('password-input')[0].value
 
     fetch(url, {
         method: 'POST',
@@ -199,11 +220,35 @@ function loginUser(){
             'Content-Type':'application/json',
             'X-CSRFToken':csrftoken,
         },
-        body:JSON.stringify({'username': username, 'email': email, 'password': password})
+        body:JSON.stringify({'username_input': username_input, 'password_input': password_input})
     })
 
     .then((response) =>{
-        location.reload()
+        window.location = response.url
         return response.json();
     })
+}
+
+function logout(){
+    var url = '/logout/'
+    endIndex = loginBtn[0].href.length-1, loginBtn[0].href.length
+
+    if (loginBtn[0].href.slice(endIndex) === "#"){
+        if (confirm("Are you sure you want to logout?")){
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'ContentType': 'application/json',
+                    'X-CSRFToken': csrftoken,
+                },
+                body:user
+            })
+
+            .then((response) => {
+                url = '/'
+                window.location = url
+                return response.json()
+            })
+        }
+    }
 }

@@ -1,5 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import JsonResponse
+from django.contrib.auth import authenticate
+from django.contrib.auth import login as auth_login
+from django.contrib.auth import logout as auth_logout
+from django.contrib import messages
 import json
 
 from .models import *
@@ -11,38 +15,46 @@ def home(request):
     return render(request, 'incomeapp/home.html', context)
 
 def login(request):
-    context = {}
-    return render(request, 'incomeapp/login.html', context)
-
-def loginUser(request):
-    data = userData(request)
-    username = data['username']
-    email = data['email']
+    if request.method == "POST":
+        username = request.POST['username-input']
+        password = request.POST['password-input']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            auth_login(request, user)
+            return redirect('userpage')
+        else:
+            messages.success(request, ("No user found. Please try again or create a new user with that Username."))
+            return redirect('login')
+    else:
+        context = {}
+        return render(request, 'incomeapp/login.html', context)
     
-    person = request.user.person
-    new_user = Person.objects.get_or_create(user=person, name=username, email=email)
+def logout(request):
+    if request.method == "POST":
+        auth_logout(request)
     
-    new_user.save()
-    
-    return JsonResponse("yes", safe=False)
+    return JsonResponse("Logged out", safe=False)
 
 def userpage(request):
     data = userData(request)
-    incomes = data['incomes']
-    expenses = data['expenses']
-    user = data['user']
-    totals_data = getTotals(request)
-    total_incomes = totals_data['total_incomes']
-    total_expenses = totals_data['total_expenses']
-    
-    final_total = total_incomes - total_expenses
-    
-    if final_total >= 0:
-        final_total = "+£" + str(final_total)
-    else:
-        final_total = "-£" + str(abs(final_total))
+    context = {}
+    if data:
+        incomes = data['incomes']
+        expenses = data['expenses']
+        user = data['user']
+        totals_data = getTotals(request)
+        total_incomes = totals_data['total_incomes']
+        total_expenses = totals_data['total_expenses']
         
-    context = {'incomes': incomes, 'expenses': expenses, 'total_incomes': total_incomes, 'total_expenses': total_expenses, 'final_total': final_total, 'user': user}
+        final_total = total_incomes - total_expenses
+        
+        if final_total >= 0:
+            final_total = "+£" + str(final_total)
+        else:
+            final_total = "-£" + str(abs(final_total))
+            
+        context = {'incomes': incomes, 'expenses': expenses, 'total_incomes': total_incomes, 'total_expenses': total_expenses, 'final_total': final_total, 'user': user}
+        
     return render(request, 'incomeapp/userpage.html', context)
 
 def addIncome(request):
