@@ -7,7 +7,7 @@ from django.contrib import messages
 import json
 
 from .models import *
-from .utils import userData, getTotals
+from .utils import userData, getTotals, incomesLimit, expensesLimit
 
 # Create your views here.
 def home(request):
@@ -70,24 +70,32 @@ def addIncome(request):
     income_amount = data['income_amount']
     income_name = data['income_name']
     
+    if len(income_name) > 12 or len(income_amount) > 5:
+        return JsonResponse("Name too long.", safe=False)
+    
+    if incomesLimit(request)['incomes_count'] > 16:
+        return JsonResponse("Limit reached.", safe=False)
+    
     person = request.user.person
-    new_income = Income.objects.get_or_create(person=person, name=income_name, amount=income_amount)
+    Income.objects.get_or_create(person=person, name=income_name, amount=income_amount)
     
-    new_income.save()
-    
-    return JsonResponse("yes", safe=False)
+    return JsonResponse("Income added.", safe=False)
 
 def addExpense(request):
     data = json.loads(request.body)
     expense_amount = data['expense_amount']
     expense_name = data['expense_name']
     
+    if len(expense_name) > 12 or len(expense_amount) > 5:
+        return JsonResponse("Name too long.", safe=False)
+    
+    if expensesLimit(request)['expenses_count'] > 16:
+        return JsonResponse("Limit reached.", safe=False)
+    
     person = request.user.person
-    new_expense = Expense.objects.get_or_create(person=person, name=expense_name, amount=expense_amount)
+    Expense.objects.get_or_create(person=person, name=expense_name, amount=expense_amount)
     
-    new_expense.save()
-    
-    return JsonResponse("yes", safe=False)
+    return JsonResponse("Expense added.", safe=False)
 
 def removeIncome(request):
     data = json.loads(request.body)
@@ -97,7 +105,7 @@ def removeIncome(request):
     
     Income.objects.filter(person=person, name=income_name).delete()
     
-    return JsonResponse("yes", safe=False)
+    return JsonResponse("Income removed.", safe=False)
 
 def removeExpense(request):
     data = json.loads(request.body)
@@ -107,4 +115,4 @@ def removeExpense(request):
     
     Expense.objects.filter(person=person, name=expense_name).delete()
     
-    return JsonResponse("yes", safe=False)
+    return JsonResponse("Expense removed.", safe=False)

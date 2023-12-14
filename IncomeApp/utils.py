@@ -31,3 +31,19 @@ def getTotals(request):
         final_total = "-£" + str(abs(final_total))
     
     return {'total_incomes': total_incomes, 'total_expenses': total_expenses, 'final_total': final_total}
+
+def incomesLimit(request):
+    person = request.user.person
+    
+    incomes_count = len([i for i in Income.objects.filter(person=person)])
+    print(incomes_count)
+    
+    return {'incomes_count': incomes_count}
+
+def expensesLimit(request):
+    person = request.user.person
+    
+    expenses_count = len([i for i in Expense.objects.filter(person=person)])
+    print(expenses_count)
+    
+    return {'expenses_count': expenses_count}

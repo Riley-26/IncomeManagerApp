@@ -259,3 +259,11 @@ function logout(){
         }
     }
 }
+
+function displayDropDown(x){
+    if (x == 0){
+        document.body.classList += " drop-down"
+    } else if (x == 1){
+        document.body.classList.remove("drop-down")
+    }
+}

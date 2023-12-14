@@ -49,14 +49,21 @@
 
     </head>
     <body>
-        
         <nav class="navbar">
             <div class="nav-container">
                 <a href="{% url 'home' %}" class="nav-list-logo">Income<span style="color:#5ba4b1;">Manager</span></a>
+                <a href="{% url 'home' %}" class="nav-list-logo nav-list-logo-media">I<span style="color:#5ba4b1;">M</span></a>
                 <ul class="nav-list">
                     <li class="nav-list-element"><a href="{% url 'home' %}">Home</a></li>
                     <li class="nav-list-element nav-list-element-mid"><a href="{% url 'userpage' %}">My Manager</a></li>
                     <li class="nav-list-element nav-list-btn"><a href="{% url 'login' %}" class="login-btn" onclick="logout()">Log In</a></li>
+                    <li class="nav-list-element nav-list-burger"><span class="material-symbols-outlined" onclick="displayDropDown('0')">menu</span></li>
+                    <ul class="drop-down-list">
+                        <li class="drop-down-element"><span class="material-symbols-outlined drop-down-close" onclick="displayDropDown('1')">close</span></li>
+                        <li class="drop-down-element drop-down-element-link"><a href="{% url 'home' %}">Home</a></li>
+                        <li class="drop-down-element drop-down-element-link"><a href="{% url 'userpage' %}">My Manager</a></li>
+                        <li class="drop-down-element drop-down-element-link"><a href="{% url 'login' %}" class="login-btn" onclick="logout()">Log In</a></li>
+                    </ul>
                 </ul>
             </div>
             <hr class="nav-hr">

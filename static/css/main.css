@@ -117,6 +117,50 @@ li{
     transition: all ease-in-out 0.1s;
 }
 
+.nav-list-logo-media{
+    display: none;
+}
+
+.nav-list-burger{
+    color: white;
+    display: none;
+    cursor: pointer;
+}
+
+.drop-down .nav-list-burger{
+    visibility: hidden;
+}
+
+.drop-down-list{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background-color: rgba(24, 24, 24, 0.865);
+    visibility: hidden;
+    transition: all 0.1s ease-in-out;
+    opacity: 0;
+    padding: 24px;
+    border-radius: 5%;
+
+    z-index: 101;
+}
+
+.drop-down .drop-down-list{
+    visibility: visible;
+    opacity: 1;
+}
+
+.drop-down-element-link{
+    padding: 12px 0;
+    margin: 0 12px;
+}
+
+.drop-down-close{
+    color: white;
+    float: right;
+    cursor: pointer;
+}
+
 /* userpage */
 
 .container{
@@ -124,7 +168,7 @@ li{
     padding: 72px 0;
 }
 
-#main{
+.main{
     border-radius: 8px;
     padding: 24px;
     display: flex;
@@ -163,6 +207,7 @@ li{
 }
 
 .hide-icon{
+    user-select: none;
     font-size: 80px;
     color: var(--main-color);
 }
@@ -313,6 +358,7 @@ li{
     padding: 8px 24px;
 }
 
+
 .main-left-header{
     margin-bottom: 18px;
     padding: 24px 24px 0 24px;
@@ -332,7 +378,7 @@ li{
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding: 0 0 0 24px;
+    padding: 0 24px 0 0;
 }
 
 .main-left-list{
@@ -351,7 +397,7 @@ li{
 }
 
 .main-left-list-delete{
-    margin-right: 12px;
+    margin-left: 12px;
     transition: all ease-in-out 0.1s;
 }
 
@@ -458,6 +504,7 @@ li{
     font-weight: 600;
     color: #540000;
     transition: all 0.05s ease-in-out;
+    user-select: none;
 }
 
 .bin-icon:hover{
@@ -491,15 +538,23 @@ li{
     background: radial-gradient(at 18% 99%, rgb(66, 119, 129) 0px, transparent 50%) repeat scroll 0% 0%, 
                 radial-gradient(at 4% 49%, rgb(62, 62, 62) 0px, transparent 50%) repeat scroll 0% 0%,
                 rgba(0, 0, 0, 0) radial-gradient(at 57% 33%, #427781 0px, rgb(62, 62, 62) 50%) repeat scroll 0% 0%;
-    height: 70%;
+    height: 65vh;
     padding: 72px 128px;
+    margin: 0 auto;
+    max-width: fit-content;
+    height: 75vh;
+    padding: 72px 128px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 .upper-home-nums{
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0 128px;
+    margin: 0 auto;
+    max-width: 50%;
 }
 
 .upper-home-figures{
@@ -510,7 +565,8 @@ li{
 
 .upper-home-total{
     font-size: 80px;
-    margin: 0 128px;
+    margin: 0 auto;
+    max-width: 50%;
     color: green;
     font-weight: 400;
 }
@@ -530,10 +586,13 @@ li{
 }
 
 .lower-main{
-    height: 80%;
-    width: 100%;
-    padding: 8% 20%;
-    
+    margin: 0 auto;
+    max-width: fit-content;
+    height: 75vh;
+    padding: 72px 128px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 .lower-home-header{
@@ -557,12 +616,12 @@ li{
     height: 100%;
 }
 
-
 .home-icons{
     font-size: 36px;
     font-weight: 600;
     padding: 16px 24px;
     color: var(--main-color);
+    user-select: none;
 }
 
 .main-hr{
@@ -600,19 +659,21 @@ li{
     text-decoration: none;
 }
 
+.footer-links-media{
+    display: none;
+}
+
+.footer-title-media{
+    display: none;
+}
+
 /*login form*/
 
 .login-container{
     display: flex;
     justify-content: center;
-    margin: 6.5% auto;
-    height: 60vh;
-    width: 50%;
-    background: radial-gradient(at 18% 99%, rgb(66, 119, 129) 0px, transparent 50%) repeat scroll 0% 0%, 
-                radial-gradient(at 4% 49%, rgb(62, 62, 62) 0px, transparent 50%) repeat scroll 0% 0%,
-                rgba(0, 0, 0, 0) radial-gradient(at 57% 33%, rgb(66, 119, 129) 0px, rgb(43, 43, 43) 50%) repeat scroll 0% 0%;
-    box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.536);
-    border-radius: 32px;
+    height: 93vh;
+    width: 100%;
 }
 
 .login-header{
@@ -626,8 +687,16 @@ li{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 100%;
-    width: 50%;
+    background: radial-gradient(at 18% 99%, rgb(66, 119, 129) 0px, transparent 50%) repeat scroll 0% 0%, 
+                radial-gradient(at 4% 49%, rgb(62, 62, 62) 0px, transparent 50%) repeat scroll 0% 0%,
+                rgba(0, 0, 0, 0) radial-gradient(at 57% 33%, rgb(66, 119, 129) 0px, rgb(43, 43, 43) 50%) repeat scroll 0% 0%;
+    box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.536);
+    border-radius: 32px;
+    padding: 32px 128px;
+    height: 80%;
+    max-width: 50vw;
+    width: 100%;
+    margin: auto;
 }
 
 .login-label{
@@ -654,3 +723,239 @@ li{
     font-size: 20px;
     font-weight: 500;
 }
+
+/*Media*/
+
+@media (max-width: 1245px){
+    /*Nav*/
+
+
+
+    /*Home*/
+
+
+    .upper-home-header{
+        font-size: 44px;
+        padding: 0 72px;
+    }
+
+    .upper-home-info{
+        font-size: 24px;
+    }
+
+
+    .upper-home-green{
+        font-size: 34px;
+        padding: 18px 8px;
+    }
+
+    .upper-home-red{
+        font-size: 38px;
+        padding: 18px 8px;
+    }
+
+    .upper-home-total{
+        font-size: 68px;
+    }
+
+    /*Userpage*/
+
+    .main{
+        
+    }
+
+    /*Login*/
+
+    .login-form{
+        max-width: 70vw;
+    }
+
+}
+
+@media (max-width: 930px){
+    /*Nav*/
+
+
+
+    /*Home*/
+
+    .upper-main{
+        padding: 72px 64px;
+    }
+
+    /*Login*/
+
+    .login-form{
+        padding: 32px 72px;
+    }
+
+}
+
+
+@media (max-width: 875px){
+    /*Nav*/
+
+    .nav-list-element{
+        display: none;
+    }
+
+    .nav-list-burger{
+        display: block;
+    }
+
+    /*Home*/
+
+
+
+    .lower-home-header{
+        font-size: 36px;
+    }
+
+    .lower-home-info{
+        font-size: 22px;
+    }
+
+    .home-icons{
+        padding: 4px 12px;
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 755px){
+    /*Nav*/
+
+
+
+    /*Home*/
+
+    .upper-main{
+        padding: 72px 32px;
+    }
+
+    .upper-home-header{
+        font-size: 36px;
+        text-align: center;
+    }
+
+    .upper-home-info{
+        font-size: 20px;
+    }
+
+    .upper-home-total{
+        font-size: 54px;
+    }
+
+    .upper-home-green{
+        font-size: 28px;
+    }
+
+    .upper-home-red{
+        font-size: 28px;
+    }
+
+    .lower-main{
+        padding: 72px 42px;
+    }
+
+    .lower-home-header{
+        text-align: center;
+    }
+
+    /*Footer*/
+
+    .footer-links-media{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .footer-link{
+        display: none;
+    }
+
+    .footer-title{
+        display: flex;
+    }
+
+    .footer-link-media{
+        display: flex;
+    }
+
+    .footer-title{
+        display: none;
+    }
+
+    .footer-title-media{
+        display: flex;
+    }
+
+    /*Login*/
+
+    .login-header{
+        font-size: 36px;
+    }
+
+    .login-buttons{
+        flex-direction: column;
+        justify-content: center;
+        width: fit-content;
+        margin: 0 auto;
+    }
+
+    .login-button{
+        font-size: 16px;
+    }
+
+}
+
+@media (max-width: 490px){
+    /*Nav*/
+
+    .nav-list-logo{
+        display: none;
+    }
+
+    .nav-list-logo-media{
+        display: flex;
+    }
+
+    /*Home*/
+
+    .upper-home-header{
+        font-size: 32px;
+        padding: 0 32px;
+    }
+
+    .upper-home-total{
+        font-size: 48px;
+    }
+
+    .upper-home-green{
+        font-size: 24px;
+    }
+
+    .upper-home-red{
+        font-size: 24px;
+    }
+
+    .lower-home-info{
+        font-size: 18px;
+    }
+
+    .lower-home-list{
+        margin: 24px 24px;
+    }
+
+    /*Login*/
+
+    .login-form{
+        padding: 24px 32px;
+        margin: auto 12px;
+    }
+
+    .login-header{
+        font-size: 26px;
+    }    
+
+}
+
+/* 375px */
