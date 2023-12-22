@@ -7,4 +7,4 @@ Password hashing,
 CSRF Tokens, 
 Session/Local storage, 
 API requesting and responses, 
-Database management, 
+Database management
