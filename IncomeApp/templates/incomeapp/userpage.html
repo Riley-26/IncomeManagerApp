@@ -6,35 +6,9 @@
 <span class="anon-modal">Please log-in or create a new user.</span>
 <div class="container">
     <span class="form-modal"></span>
-
-    <div class="main">
+    <div id="main">
         <div class="modal"><span class="view-button" onclick="blurModal('show')">View</span></div>
-        <div class="main-left">
-            <h2 class="main-left-header">Incomes</h1>
-            <button class="main-left-incomes-btn" onclick="incomeBtn('0')">ADD INCOME</button>
-            <form class="income-form">
-                <span class="material-symbols-outlined close-btn" onclick="closeBtn()">close</span>
-                <label>Amount: </label>
-                <input type="text" class="income-amount" name="income-amount">
-                <br>
-                <label>Name: </label>
-                <input type="text" class="income-name" name="income-name">
-                <input type="button" value="Submit" onclick="addNewIncome()">
-            </form>
-            <div class="main-left-lists">
-                {% for income in incomes %}
-                <div class="main-left-list">
-                    <li class="main-left-list-element-num" style="color:green;">+£{{income.amount}}</li>
-                    <ul class="main-left-list-item">
-                        <li class="main-left-list-element-title">{{income.name}}</li>
-                        <li class="main-left-list-delete"><span class="material-symbols-outlined bin-icon"onclick="deleteIncome({{ forloop.counter0 }})">delete</span></li>
-                    </ul>
-                </div>
-                {% endfor %}
-                </ul>
-            </div>
-        </div>
-        <div class="main-mid">
+        <div class="main-mid main-mid-media">
             <div class="main-totals">
                 <h1 class="main-totals-header">Welcome, {{user.name}}</h1>
                 <h2 class="main-totals-subheader">Monthly total:</h2>
@@ -53,29 +27,75 @@
                 </div>
             </div>
         </div>
-        <div class="main-right">
-            <h2 class="main-right-header">Expenses</h1>
-            <button class="main-right-expenses-btn" onclick="expenseBtn('0')">ADD EXPENSE</button>
-            <form class="expense-form">
-                <span class="material-symbols-outlined close-btn" onclick="closeBtn()">close</span>
-                <label>Amount: </label>
-                <input type="text" class="expense-amount" name="expense-amount">
-                <br>
-                <label>Name: </label>
-                <input type="text" class="expense-name" name="expense-name">
-                <input type="button" value="Submit" onclick="addNewExpense()">
-            </form>
-            <div class="main-right-lists">
-                {% for expense in expenses %}
-                <div class="main-right-list">
-                    <li class="main-right-list-element-num" style="color:red;">+£{{expense.amount}}</li>
-                    <ul class="main-right-list-item">
-                        <li class="main-right-list-element-title">{{expense.name}}</li>
-                        <li class="main-right-list-delete"><span class="material-symbols-outlined bin-icon"onclick="deleteExpense({{ forloop.counter0 }})">delete</span></li>
+        <div class="main main-media">
+            <div class="main-left">
+                <h2 class="main-left-header">Incomes</h1>
+                <button class="main-left-incomes-btn" onclick="incomeBtn('0')">ADD INCOME</button>
+                <form class="income-form">
+                    <span class="material-symbols-outlined close-btn" onclick="closeBtn()">close</span>
+                    <label>Amount: </label>
+                    <input type="text" class="income-amount" name="income-amount">
+                    <br>
+                    <label>Name: </label>
+                    <input type="text" class="income-name" name="income-name">
+                    <input type="button" value="Submit" onclick="addNewIncome()">
+                </form>
+                <div class="main-left-lists">
+                    {% for income in incomes %}
+                    <div class="main-left-list">
+                        <li class="main-left-list-element-num" style="color:green;">+£{{income.amount}}</li>
+                        <ul class="main-left-list-item">
+                            <li class="main-left-list-element-title">{{income.name}}</li>
+                            <li class="main-left-list-delete"><span class="material-symbols-outlined bin-icon"onclick="deleteIncome({{ forloop.counter0 }})">delete</span></li>
+                        </ul>
+                    </div>
+                    {% endfor %}
                     </ul>
                 </div>
-                {% endfor %}
-                </ul>
+            </div>
+            <div class="main-mid">
+                <div class="main-totals">
+                    <h1 class="main-totals-header">Welcome, {{user.name}}</h1>
+                    <h2 class="main-totals-subheader">Monthly total:</h2>
+                    <div class="main-totals-info-wrapper">
+                        <span class="main-totals-usertotal" style="color:green;">{{final_total}}</span>
+                    </div>
+                </div>
+                <div class="main-extra-totals">
+                    <div class="main-extra-incomes">
+                        <h2 class="main-extra-income-header">Total Incomes:</h2>
+                        <span class="main-extra-income-total" style="color:green;">+£{{total_incomes}}</span>
+                    </div>
+                    <div class="main-extra-expenses">
+                        <h2 class="main-extra-expense-header">Total Expenses:</h2>
+                        <span class="main-extra-expense-total" style="color:red;">-£{{total_expenses}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="main-right">
+                <h2 class="main-right-header">Expenses</h1>
+                <button class="main-right-expenses-btn" onclick="expenseBtn('0')">ADD EXPENSE</button>
+                <form class="expense-form">
+                    <span class="material-symbols-outlined close-btn" onclick="closeBtn()">close</span>
+                    <label>Amount: </label>
+                    <input type="text" class="expense-amount" name="expense-amount">
+                    <br>
+                    <label>Name: </label>
+                    <input type="text" class="expense-name" name="expense-name">
+                    <input type="button" value="Submit" onclick="addNewExpense()">
+                </form>
+                <div class="main-right-lists">
+                    {% for expense in expenses %}
+                    <div class="main-right-list">
+                        <li class="main-right-list-element-num" style="color:red;">+£{{expense.amount}}</li>
+                        <ul class="main-right-list-item">
+                            <li class="main-right-list-element-title">{{expense.name}}</li>
+                            <li class="main-right-list-delete"><span class="material-symbols-outlined bin-icon"onclick="deleteExpense({{ forloop.counter0 }})">delete</span></li>
+                        </ul>
+                    </div>
+                    {% endfor %}
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

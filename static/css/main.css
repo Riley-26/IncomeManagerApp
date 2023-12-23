@@ -13,7 +13,7 @@ body{
 nav{
     background-color: rgb(43, 43, 43);
     height: 7vh;
-    z-index: 1;
+    z-index: 101;
 }
 
 li{
@@ -170,16 +170,35 @@ li{
 
 .main{
     border-radius: 8px;
-    padding: 24px;
     display: flex;
     height: 100%;
+    width: 100%;
+    color: white;
+    position: relative;
     background: radial-gradient(at 18% 99%, rgb(66, 119, 129) 0px, transparent 50%) repeat scroll 0% 0%, 
                 radial-gradient(at 4% 49%, rgb(62, 62, 62) 0px, transparent 50%) repeat scroll 0% 0%,
                 rgba(0, 0, 0, 0) radial-gradient(at 57% 33%, rgb(66, 119, 129) 0px, rgb(62, 62, 62) 50%) repeat scroll 0% 0%;
     background-position: 10% 0%;
+    box-shadow: 0 0 50px 0 black;
+}
+
+#main{
+    border-radius: 8px;
+    display: flex;
+    height: 100%;
+    width: 100%;
     color: white;
-    box-shadow: 0px 0px 50px 0px black;
     position: relative;
+    background: radial-gradient(at 18% 99%, rgb(66, 119, 129) 0px, transparent 50%) repeat scroll 0% 0%, 
+                radial-gradient(at 4% 49%, rgb(62, 62, 62) 0px, transparent 50%) repeat scroll 0% 0%,
+                rgba(0, 0, 0, 0) radial-gradient(at 57% 33%, rgb(66, 119, 129) 0px, rgb(62, 62, 62) 50%) repeat scroll 0% 0%;
+    background-position: 10% 0%;
+    box-shadow: 0 0 50px 0 black;
+}
+
+.main-media{
+    height: 100%;
+    width: 100%;
 }
 
 .hide-button{
@@ -214,6 +233,9 @@ li{
 
 .modal{
     position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     background-color: rgba(0, 0, 0, 0.25);
     backdrop-filter: blur(24px);
     display: block;
@@ -221,7 +243,6 @@ li{
     border-radius: 8px;
     transition: all 0.2s ease;
     z-index: 4;
-
 }
 
 .anon-modal{
@@ -240,6 +261,7 @@ li{
 .view-button{
     left: 45%;
     top: 40%;
+    color: white;
     text-align: center;
     font-size: 56px;
     font-weight: 500;
@@ -273,34 +295,44 @@ li{
 
 .main-left{
     width: 20%;
+    padding: 12px;
+    border-right: 1px solid rgba(255, 255, 255, 0.4);
+
+}
+
+.main-mid-media{
+    display: none;
+    width: 100%;
 }
 
 .main-mid{
     width: 60%;
-    padding: 0 24px;
-    border-left: 1px solid rgba(255, 255, 255, 0.4);
-    border-right: 1px solid rgb(255, 255, 255, 0.4);
 }
 
 .main-right{
     width: 20%;
+    padding: 12px;
+    border-left: 1px solid rgba(255, 255, 255, 0.4);
+
 }
 
 .main-totals{
     height: 65%;
-    padding-bottom: 36px;
+    padding: 36px;
 }
 
 .main-extra-totals{
     display: flex;
     height: 35%;
-    padding-top: 18px;
+    margin-top: 18px;
+    padding-bottom: 18px;
     border-top: 1px solid rgb(255, 255, 255, 0.4);
 }
 
 .main-extra-incomes{
     width: 50%;
-    padding-right: 24px;
+    padding-left: 24px;
+    padding-top: 24px;
     border-right: 1px solid rgb(255, 255, 255, 0.4);
 }
 
@@ -315,6 +347,7 @@ li{
 .main-extra-expenses{
     width: 50%;
     padding-left: 24px;
+    padding-top: 24px;
 }
 
 .main-totals-header{
@@ -378,7 +411,7 @@ li{
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding: 0 24px 0 0;
+    padding: 0 8px;
 }
 
 .main-left-list{
@@ -412,8 +445,9 @@ li{
     padding: 32px;
     opacity: 0;
     transition: all 0.1s ease;
-    z-index: 4;
+    z-index: 104;
 }
+
 
 /* Main Right */
 
@@ -440,7 +474,7 @@ li{
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding: 0 0 0 24px;
+    padding: 0 8px;
 }
 
 .main-right-list{
@@ -474,7 +508,7 @@ li{
     padding: 32px;
     opacity: 0;
     transition: all 0.1s ease;
-    z-index: 4;
+    z-index: 104;
 }
 
 .form-modal{
@@ -486,7 +520,7 @@ li{
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.457);
-    z-index: 3;
+    z-index: 103;
     transition: all 0.1s ease;
 }
 
@@ -726,6 +760,19 @@ li{
 
 /*Media*/
 
+@media (max-width: 1400px){
+
+    .main-right{
+        padding: 0;
+    }
+
+    .main-left{
+        padding: 0;
+    }
+}
+
+
+
 @media (max-width: 1245px){
     /*Nav*/
 
@@ -761,7 +808,79 @@ li{
     /*Userpage*/
 
     .main{
+        background: none;
+        border-radius: 0px;
+        box-shadow: none;
+    }
+
+    #main{
         
+        display: flex;
+        flex-direction: column;
+    }
+
+    .main-left{
+        border-right: 1px solid rgba(255, 255, 255, 0.4);
+    }
+
+    .main-right{
+        border-left: none;
+    }
+
+    .main-mid{
+        display: none;
+    }
+
+    .main-media{
+        width: 100%;
+    }
+
+    .main-right{
+        width: 50%;
+        border-top: 1px solid rgba(255, 255, 255, 0.4);
+    }
+    
+    .main-left{
+        width: 50%;
+        border-top: 1px solid rgba(255, 255, 255, 0.4);
+    }
+
+    .main-right-lists{
+        width: 70%;
+    }
+
+    .main-left-lists{
+        width: 70%;
+    }
+
+    .main-totals-header{
+        height: 30%;
+    }
+
+    .main-mid-media{
+        max-width: 100%;
+        text-align: center;
+        margin: 12px auto;
+        display: flex;
+        justify-content: center;
+    }
+
+    .main-totals{
+        height: 100%;
+    }
+
+    .main-extra-totals{
+        display: none;
+    }
+
+    .expense-form{
+        top: -30%;
+        right: 35%;
+    }
+
+    .income-form{
+        top: -30%;
+        right: 35%;
     }
 
     /*Login*/
@@ -770,6 +889,20 @@ li{
         max-width: 70vw;
     }
 
+}
+
+@media (max-width: 1000px){
+    .main-totals-header{
+        font-size: 46px;
+    }
+
+    .expense-form{
+        right: 30%;
+    }
+
+    .income-form{
+        right: 30%;
+    }
 }
 
 @media (max-width: 930px){
@@ -782,6 +915,15 @@ li{
     .upper-main{
         padding: 72px 64px;
     }
+
+    .view-button{
+        left: 42%;
+    }
+
+    .anon-modal{
+        font-size: 36px;
+    }
+
 
     /*Login*/
 
@@ -821,12 +963,80 @@ li{
     }
 }
 
+@media (max-width: 768px){
+
+    .expense-form{
+        right: 25%;
+        top: 2%;
+    }
+
+    .income-form{
+        right: 25%;
+        top: 2%;
+    }
+
+    .main-mid{
+        width: 100%;
+    }
+
+    .main-totals{
+        padding: 0;
+    }
+
+    .main-totals-header{
+        font-size: 42px;
+
+    }
+    .main-totals-subheader{
+        font-size: 24px;
+    }
+
+    .main-totals-usertotal{
+        font-size: 60px;
+    }
+
+    .main-totals-info-wrapper{
+        height: unset;
+    }
+
+    .main-mid-media{
+        height: 30%;
+    }
+
+    .main-right-lists{
+        width: 100%;
+    }
+
+    .main-left-lists{
+        width: 100%;
+    }
+
+    .hide-button{
+        height: fit-content;
+        width: fit-content;
+        padding: 12px;
+    }
+
+    .hide-icon{
+        font-size: 56px;
+    }
+
+}
+
 @media (max-width: 755px){
     /*Nav*/
 
 
 
     /*Home*/
+
+    .anon-modal{
+        font-size: 28px
+    }
+
+    .view-button{
+        left: 40%;
+    }
 
     .upper-main{
         padding: 72px 32px;
@@ -907,6 +1117,44 @@ li{
 
 }
 
+@media (max-width: 575px){
+    .main-right-header{
+        font-size: 22px;
+    }
+
+    .main-left-header{
+        font-size: 22px;
+    }
+
+    .main-right-expenses-btn{
+        font-size: 12px;
+    }
+
+    .main-left-incomes-btn{
+        font-size: 12px;
+    }
+
+    .main-right-list-element-num{
+        font-size: 16px;
+    }
+
+    .main-right-list-element-title{
+        font-size: 16px;
+    }
+
+    .main-left-list-element-num{
+        font-size: 16px;
+    }
+
+    .main-left-list-element-title{
+        font-size: 16px;
+    }
+
+    .bin-icon{
+        font-size: 18px;
+    }
+}
+
 @media (max-width: 490px){
     /*Nav*/
 
@@ -919,6 +1167,22 @@ li{
     }
 
     /*Home*/
+
+    .income-form{
+        right: 20%;
+    }
+
+    .expense-form{
+        right: 20%;
+    }
+
+    .anon-modal{
+        padding: 0 32px;
+    }
+
+    .view-button{
+        left: 35%;
+    }
 
     .upper-home-header{
         font-size: 32px;
@@ -945,6 +1209,56 @@ li{
         margin: 24px 24px;
     }
 
+    .main-right-list-element-num{
+        font-size: 12px;
+    }
+
+    .main-right-list-element-title{
+        font-size: 12px;
+    }
+
+    .main-left-list-element-num{
+        font-size: 12px;
+    }
+
+    .main-left-list-element-title{
+        font-size: 12px;
+    }
+
+    .bin-icon{
+        font-size: 14px;
+    }
+
+    .main-totals-usertotal{
+        font-size: 52px;
+    }
+
+    .main-totals-subheader{
+        padding-bottom: 12px;
+        font-size: 20px;
+    }
+    
+    .main-totals-header{
+        padding-bottom: 12px;
+        font-size: 32px;
+    }
+
+    .main-right-header{
+        font-size: 18px;
+    }
+
+    .main-left-header{
+        font-size: 18px;
+    }
+
+    .main-right-expenses-btn{
+        font-size: 10px;
+    }
+
+    .main-left-incomes-btn{
+        font-size: 10px;
+    }
+
     /*Login*/
 
     .login-form{
@@ -956,6 +1270,16 @@ li{
         font-size: 26px;
     }    
 
+}
+
+@media (max-width: 430px){
+    .income-form{
+        right: 16%;
+    }
+
+    .expense-form{
+        right: 16%;
+    }
 }
 
 /* 375px */
